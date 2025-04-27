@@ -1,19 +1,28 @@
+// File: include/traffic_light.h
+
 #ifndef TRAFFIC_LIGHT_H
 #define TRAFFIC_LIGHT_H
 
-enum lightState {
+// Traffic light states
+enum LightState {
     RED,
     YELLOW,
     GREEN
 };
 
-struct TrafficLight{
-    enum lightState current_state;
-    int duration; // in seconds.
+// Traffic light structure
+struct TrafficLight {
+    enum LightState state;
+    int timer;
+    int traffic_density;
+    int pedestrian_waiting;
+    int emergency_mode;
 };
 
-void initTrafficLight(struct TrafficLight *light); //Setting the default state i.e. RED 50 seconds.
-void updateTrafficLight(struct TrafficLight *light); //Updates traffic light state.
-void displayTrafficLight(struct TrafficLight *light); //Displays the realtime state.
+// Function declarations
+void initTrafficLight(struct TrafficLight *light);
+void updateTrafficLight(struct TrafficLight *light);
+void displayTrafficLight(const struct TrafficLight *light);
+void processInput(struct TrafficLight *light, char input);
 
-#endif
+#endif // TRAFFIC_LIGHT_H
